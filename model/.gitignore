@@ -1,0 +1,12 @@
+# Ignore environment
+.env
+venv/
+
+# ignore build/compile artifacts
+*.egg-info/
+__pycache__/
+
+# ignore data folders
+data/raw/
+data/external/
+data/interim/
