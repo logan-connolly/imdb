@@ -1,13 +1,24 @@
-# CL2021 Software Engineering Training
+# Model Factory
 
-## Create python environment
+Based on the following cookie cutter: https://github.com/drivendata/cookiecutter-data-science
 
-```shell
-make create
-```
+# Usage
 
-## Retrieve Data
+The easiest way to trigger the pipeline is via `make`:
 
 ```shell
+# Create local python venv enviroment
+make create_venv
+
+# Retrieve and process data
 make data
+
+# Run Linting via pre-commit
+make lint
+
+# Run unittests
+make unittests
+
+# Clean up files in directory
+make clean
 ```
