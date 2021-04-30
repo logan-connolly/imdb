@@ -1,5 +1,10 @@
 name: Test model package
+
 on: push
+
+defaults:
+  run:
+    working-directory: model
 
 jobs:
   run-tests:
@@ -16,7 +21,6 @@ jobs:
 
       - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v2
-        working-directory: ./model
         with:
           python-version: ${{ matrix.python-version }}
 
