@@ -26,6 +26,7 @@ repos:
     rev: 3.8.3
     hooks:
       - id: flake8
+        args: ["--max-line-length=88"]
         name: flake8-model
         entry: flake8 ./model/src
         pass_filenames: false
