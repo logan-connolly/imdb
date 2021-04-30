@@ -6,7 +6,8 @@ venv/
 *.egg-info/
 __pycache__/
 
-# ignore data folders
-data/raw/
-data/external/
-data/interim/
+# ignore data files
+data/raw/*.tsv.gz
+data/external/*.tsv
+data/interim/*.tsv
+data/processed/*.tsv
