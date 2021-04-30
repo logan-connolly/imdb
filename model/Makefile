@@ -2,7 +2,6 @@
 # GLOBALS                                                                       #
 #################################################################################
 
-PROJECT_DIR := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 BASE_PYTHON = python3
 PIP = ./venv/bin/pip
 PYTHON = ./venv/bin/python
@@ -13,7 +12,7 @@ PRECOMMIT = ./venv/bin/pre-commit
 #################################################################################
 
 create_venv:
-	$(BASE_PYTHON) -m venv $(PROJECT_DIR)/venv
+	$(BASE_PYTHON) -m venv venv
 	$(PIP) install -U pip setuptools wheel
 	$(PIP) install -r requirements.txt
 
@@ -30,6 +29,6 @@ unittests: build
 	$(PYTHON) -m pytest ./tests/src
 
 clean:
-	find $(PROJECT_DIR)/src -type f -name ".gitkeep" -delete
-	find $(PROJECT_DIR) -type f -name "*.py[co]" -delete
-	find $(PROJECT_DIR) -type d -name "__pycache__" -delete
+	find ./src -type f -name ".gitkeep" -delete
+	find . -type f -name "*.py[co]" -delete
+	find . -type d -name "__pycache__" -delete
