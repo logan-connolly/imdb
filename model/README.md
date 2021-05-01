@@ -2,6 +2,10 @@
 
 Based on the following cookie cutter: https://github.com/drivendata/cookiecutter-data-science
 
+# Prerequisites
+
+Python must be installed along with [Poetry](https://python-poetry.org/).
+
 # Usage
 
 The easiest way to trigger the pipeline is via `make`:
