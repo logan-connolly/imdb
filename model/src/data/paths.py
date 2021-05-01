@@ -7,7 +7,6 @@ DATAPATH = Path(__file__).parents[2] / "data"
 
 @dataclass
 class Sources:
-    akas: str = "akas"
     basics: str = "basics"
     ratings: str = "ratings"
 

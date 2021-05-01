@@ -25,7 +25,7 @@ def read_from_tsv(file_path: Path):
     """Read in tsv file from external data"""
     try:
         print(f"Reading tsv file {file_path.name!r} from data/external")
-        read_kwargs = {"sep": "\t", "low_memory": False, "na_values": [r"\N"]}
+        read_kwargs = {"dtype": "object", "sep": "\t", "na_values": [r"\N"]}
         return pd.read_csv(file_path, **read_kwargs)
     except FileNotFoundError as err:
         raise FileNotFoundError(
