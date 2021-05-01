@@ -1,26 +1,16 @@
 .PHONY: create build data lint test clean
 
-BASE_PYTHON = python3
-PIP = ./venv/bin/pip
-PYTHON = ./venv/bin/python
-PRECOMMIT = ./venv/bin/pre-commit
-
-create:
-	$(BASE_PYTHON) -m venv venv
-	$(PIP) install -U pip setuptools wheel
-	$(PIP) install -r requirements.txt
-
 build:
-	$(PIP) install -e .
+	poetry install
 
 data: build
-	$(PYTHON) ./src/data/make_dataset.py
+	poetry run python ./src/data/make_dataset.py
 
 lint: build
-	$(PRECOMMIT) run --all-files
+	poetry run pre-commit run --all-files
 
 test: build
-	$(PYTHON) -m pytest ./tests/src
+	poetry run pytest ./tests/src
 
 clean:
 	find ./src -type f -name ".gitkeep" -delete
