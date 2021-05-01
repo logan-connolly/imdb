@@ -1,17 +1,11 @@
-#################################################################################
-# GLOBALS                                                                       #
-#################################################################################
+.PHONY: create build data lint test clean
 
 BASE_PYTHON = python3
 PIP = ./venv/bin/pip
 PYTHON = ./venv/bin/python
 PRECOMMIT = ./venv/bin/pre-commit
 
-#################################################################################
-# COMMANDS                                                                      #
-#################################################################################
-
-create_venv:
+create:
 	$(BASE_PYTHON) -m venv venv
 	$(PIP) install -U pip setuptools wheel
 	$(PIP) install -r requirements.txt
@@ -25,7 +19,7 @@ data: build
 lint: build
 	$(PRECOMMIT) run --all-files
 
-unittests: build
+test: build
 	$(PYTHON) -m pytest ./tests/src
 
 clean:

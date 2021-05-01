@@ -8,7 +8,7 @@ The easiest way to trigger the pipeline is via `make`:
 
 ```shell
 # Create local python venv enviroment
-make create_venv
+make create
 
 # Retrieve and process data
 make data
@@ -17,7 +17,7 @@ make data
 make lint
 
 # Run unittests
-make unittests
+make test
 
 # Clean up files in directory
 make clean
