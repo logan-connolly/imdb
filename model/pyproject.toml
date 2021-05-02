@@ -5,7 +5,7 @@ description = "A model factory for IMDB dataset."
 authors = ["Logan Connolly <logan.connolly@protonmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.8"
 pandas = "^1.2.4"
 
 [tool.poetry.dev-dependencies]

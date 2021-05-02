@@ -4,7 +4,7 @@ Based on the following cookie cutter: https://github.com/drivendata/cookiecutter
 
 # Prerequisites
 
-Python >= 3.7 must be installed along with [Poetry](https://python-poetry.org/).
+Python >= 3.8 must be installed along with [Poetry](https://python-poetry.org/).
 
 # Usage
 
