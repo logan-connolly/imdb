@@ -1,8 +1,15 @@
+from functools import reduce
 from typing import Callable
 
 import pandas as pd
+
 from src.data.io import read_from_tsv, write_to_tsv
-from src.data.paths import DataDirs, Sources, source_to_external_path
+from src.data.paths import (
+    DataDirs,
+    Sources,
+    source_to_external_path,
+    source_to_interim_path,
+)
 
 
 def get_cleaner(source: str) -> Callable[[pd.DataFrame], pd.DataFrame]:
@@ -29,3 +36,15 @@ def preprocess_data() -> None:
         cleaned_df = get_cleaner(name)(external_df).dropna()
         output_path = DataDirs.interim / f"{name}.tsv"
         write_to_tsv(cleaned_df, output_path)
+
+
+def combine_data() -> None:
+    """Combine data sources into one"""
+
+    def join(df_left: pd.DataFrame, df_right: pd.DataFrame) -> pd.DataFrame:
+        return pd.merge(df_left, df_right, on="tconst")
+
+    dfs = [read_from_tsv(fpath) for fpath in source_to_interim_path().values()]
+    output_df = reduce(join, dfs)
+    output_path = DataDirs.processed / "processed.tsv"
+    write_to_tsv(output_df, output_path)
