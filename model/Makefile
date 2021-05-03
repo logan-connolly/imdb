@@ -12,6 +12,9 @@ lint: build
 test: build
 	poetry run pytest ./tests/src
 
+plot: build
+	poetry run python ./src/visualization/visualize.py
+
 clean:
 	find ./src -type f -name ".gitkeep" -delete
 	find . -type f -name "*.py[co]" -delete
