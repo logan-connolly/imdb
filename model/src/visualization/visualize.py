@@ -1,13 +1,16 @@
 from functools import partial
+from typing import Callable
 
 import pandas as pd
-from seaborn import displot
+from seaborn import FacetGrid, displot
 
 from src.data.io import read_processed_data
 from src.data.paths import FIGPATH
 
+SeabornPlot = Callable[..., FacetGrid]
 
-def create_fig(df: pd.DataFrame, plt_fn, name: str, **kwargs) -> None:
+
+def create_fig(df: pd.DataFrame, plt_fn: SeabornPlot, name: str, **kwargs) -> None:
     """Create plot figure and write out to reports/figures"""
     fig = plt_fn(df, **kwargs)
     fig_path = FIGPATH / f"{plt_fn.__name__}_{name}.svg"
