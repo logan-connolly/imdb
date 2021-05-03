@@ -3,6 +3,7 @@ from pathlib import Path
 from typing import Dict, List
 
 DATAPATH = Path(__file__).parents[2] / "data"
+FIGPATH = Path(__file__).parents[2] / "reports" / "figures"
 
 
 @dataclass

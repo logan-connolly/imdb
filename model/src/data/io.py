@@ -3,6 +3,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from src.data.paths import DataDirs
+
 
 def read_compressed_file(file_path: Path) -> bytes:
     """Read in .tsv.gz file from disk"""
@@ -31,3 +33,12 @@ def read_from_tsv(file_path: Path):
 def write_to_tsv(df: pd.DataFrame, file_path: Path):
     """Write dataframe to csv format"""
     df.to_csv(file_path, sep="\t", index=False)
+
+
+def read_processed_data():
+    """Read in data that was preprocessed, specifying data types"""
+    file_path = DataDirs.processed / "processed.tsv"
+    try:
+        return pd.read_csv(file_path, sep="\t")
+    except FileNotFoundError as err:
+        raise FileNotFoundError(f"Could not find file {file_path.name!r}") from err
