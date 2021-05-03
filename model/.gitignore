@@ -11,3 +11,6 @@ data/raw/*.tsv.gz
 data/external/*.tsv
 data/interim/*.tsv
 data/processed/*.tsv
+
+# ignore rendered plots
+reports/figures/*.svg
