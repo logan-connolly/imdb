@@ -1,4 +1,4 @@
-.PHONY: create build data lint test clean
+.PHONY: create build data plots lint tests clean
 
 build:
 	poetry install
@@ -6,14 +6,14 @@ build:
 data: build
 	poetry run python ./src/data/make_dataset.py
 
+plots: build
+	poetry run python ./src/visualization/visualize.py
+
 lint: build
 	poetry run pre-commit run --all-files
 
-test: build
+tests: build
 	poetry run pytest ./tests/src
-
-plot: build
-	poetry run python ./src/visualization/visualize.py
 
 clean:
 	find ./src -type f -name ".gitkeep" -delete

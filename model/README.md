@@ -17,11 +17,14 @@ make create
 # Retrieve and process data
 make data
 
+# Generate plots (data required)
+make plots
+
 # Run Linting via pre-commit
 make lint
 
 # Run unittests
-make test
+make tests
 
 # Clean up files in directory
 make clean
