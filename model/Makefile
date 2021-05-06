@@ -16,6 +16,5 @@ tests: build
 	poetry run pytest ./tests/src
 
 clean:
-	find ./src -type f -name ".gitkeep" -delete
 	find . -type f -name "*.py[co]" -delete
 	find . -type d -name "__pycache__" -delete
