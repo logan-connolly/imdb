@@ -17,6 +17,14 @@ def plot_fig(df: pd.DataFrame, plt_fn: SeabornPlot, name: str, **kwargs) -> None
     fig.savefig(fig_path, format="svg")
 
 
+def count_genres(df: pd.DataFrame) -> pd.DataFrame:
+    """Helper function for extracting genre count"""
+    counts = df.genres.str.split(",").explode().value_counts()
+    count_df = counts.reset_index()
+    count_df.columns = ["genre", "count"]
+    return count_df
+
+
 def generate_hists(df: pd.DataFrame) -> None:
     """Generate histogram plots for numeric columns"""
     create_hist = partial(plot_fig, df=df, plt_fn=sns.displot, kind="hist")
@@ -33,8 +41,15 @@ def generate_scatter_plots(df: pd.DataFrame) -> None:
     create_scatter(name="votes", x="numVotes", y="averageRating")
 
 
+def generate_bar_plots(df: pd.DataFrame) -> None:
+    """Generate bar chart plots for categorical columns"""
+    create_bar = partial(plot_fig, plt_fn=sns.catplot, kind="bar")
+    create_bar(df=count_genres(df), name="genres", y="genre", x="count")
+
+
 if __name__ == "__main__":
     df = read_processed_data()
     sampled = df.sample(1000)
     generate_hists(df)
     generate_scatter_plots(sampled)
+    generate_bar_plots(df)
